@@ -1,0 +1,1 @@
+POC from Kubernetes in Action safari online book
