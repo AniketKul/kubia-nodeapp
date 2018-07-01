@@ -1,0 +1,19 @@
+#An example of such a job would be if you had data stored somewhere and
+#you needed to transform and export it somewhere.
+#You’re going to emulate this by running a container image built on top of the busybox image,
+#which invokes the sleep command for two minutes.
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: batch-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: batch-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: main
+        image: luksa/batch-job
