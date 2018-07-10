@@ -1,0 +1,14 @@
+# Instead of exposing an external service by manually
+# configuring the service’s Endpoints, a simpler method allows you to
+# refer to an external
+# service by its fully qualified domain name (FQDN).
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-service
+spec:
+  type: ExternalName
+  externalName: someapi.somecompany.com
+  ports:
+  - port: 80
