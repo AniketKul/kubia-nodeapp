@@ -3,11 +3,18 @@
 #still behave like a NodePort service.
 #That’s because a LoadBalancer service is an extension of a NodePort service.
 
+#You can prevent this additional hop by configuring the service to
+#redirect external
+#traffic only to pods running on the node that received the connection.
+#This is done by setting the externalTrafficPolicy field in the service’s
+#spec section.
+
 apiVersion: v1
 kind: Service
 metadata:
   name: kubia-loadbalancer
 spec:
+  externalTrafficPolicy: Local
   type: LoadBalancer
   ports:
   - port: 80
