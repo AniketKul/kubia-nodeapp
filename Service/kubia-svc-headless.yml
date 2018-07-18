@@ -1,0 +1,16 @@
+# Setting the clusterIP field in a service spec to None makes the service headless,
+# as Kubernetes won’t assign it a cluster IP through which clients could connect to
+# the pods backing it.
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubia-headless
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  clusterIP: None
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: kubia
