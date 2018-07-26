@@ -5,15 +5,15 @@ metadata:
 spec:
   volumes:
   - name: mongodb-data
-    gcePersistentDisk:
-      pdName: mongodb
-      fsType: ext4
+    gcePersistentDisk: # The type of the volume is a GCE Persistent Disk.
+      pdName: mongodb # The name of the persistent disk must match the actual PD you created earlier.
+      fsType: ext4 # The filesystem type is EXT4 (a type of Linux filesystem).
   containers:
   - image: mongo
     name: mongodb
     volumeMounts:
-    - name: mongodb-data
-      mountPath: /data/db
+    - name: mongodb-data # name of the volume
+      mountPath: /data/db # the path where MongoDB stores its data
     ports:
     - containerPort: 27017
       protocol: TCP
