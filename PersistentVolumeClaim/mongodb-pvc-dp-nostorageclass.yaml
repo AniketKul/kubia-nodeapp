@@ -1,0 +1,17 @@
+# You can create a PVC without specifying the storageClassName attribute and
+# (on Google Kubernetes Engine)
+# a GCE Persistent Disk of type pd-standard will be provisioned for you.
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc2
+spec:
+  resources:
+    requests:
+      storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+
+# Specifying an empty string as the storage class name ensures the PVC
+# binds to a pre-provisioned PV instead of dynamically provisioning a new one.
