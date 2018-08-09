@@ -1,0 +1,20 @@
+# You don’t need to enclose string values in quotations
+# marks (but you must enclose numbers).
+
+# Kubernetes also automatically exposes environment variables for each service
+# in the same namespace. These environment variables are basically auto-injected configuration.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune2
+spec:
+  containers:
+  - image: luksa/fortune:args
+    env:
+    - name: INTERVAL
+      value: "15"
+    name: html-generator
+    volumeMounts:
+    - name: html
+      mountPath: /var/htdocs
