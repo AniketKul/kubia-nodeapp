@@ -1,0 +1,19 @@
+# You might wonder what happens if the referenced ConfigMap doesn’t exist when
+# you create the pod. Kubernetes schedules the pod normally and tries to run its
+# containers. The container referencing the non-existing ConfigMap will fail to start,
+# but the other container will start normally. If you then create the missing ConfigMap,
+# the failed container is started without requiring you to recreate the pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune-env-from-configmap
+spec:
+  containers:
+  - image: luksa/fortune:env
+    env:
+    - name: INTERVAL
+      valueFrom:
+        configMapKeyRef:
+          name: fortune-config
+          key: sleep-interval

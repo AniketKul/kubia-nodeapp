@@ -11,9 +11,14 @@ metadata:
 spec:
   containers:
   - image: luksa/fortune:args
+    name: fortune-pod-env-container
     env:
     - name: INTERVAL
-      value: "15"
+      value: "30"
+    - name: FIRST_VAR
+      value: "foo"
+    - name: SECOND_VAR
+      value: "$(FIRST_VAR)bar"
     name: html-generator
     volumeMounts:
     - name: html
